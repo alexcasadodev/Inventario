@@ -8,7 +8,7 @@ Este proyecto está pensado como un ejercicio de portfolio para demostrar conoci
 
 - Construir una aplicación realista que gestione productos, usuarios y pedidos.
 
- -Incluir autenticación con roles (admin / usuario).
+- Incluir autenticación con roles (admin / usuario).
 
 - Mostrar reportes y estadísticas en un dashboard con gráficas.
 
@@ -43,33 +43,33 @@ Este proyecto está pensado como un ejercicio de portfolio para demostrar conoci
 ## 🚀 Roadmap
 - Fase 1 – MVP (mínimo producto viable)
 
-    - [ ]Crear backend en Spring Boot con CRUD de usuarios y productos.
+    - [ ] Crear backend en Spring Boot con CRUD de usuarios y productos.
 
-    - [ ]Conectar base de datos MySQL/Postgres.
+    - [ ] Conectar base de datos MySQL/Postgres.
 
-    - [ ]Frontend React con login y listado de productos.
+    - [ ] Frontend React con login y listado de productos.
 
-    - [ ]Docker Compose para levantar backend + base de datos.
+    - [ ] Docker Compose para levantar backend + base de datos.
 
 - Fase 2 – Funcionalidades avanzadas
 
-    - [ ]Autenticación JWT con roles (admin / usuario).
+    - [ ] Autenticación JWT con roles (admin / usuario).
 
-    - [ ]Dashboard en frontend con gráficas de stock/ventas.
+    - [ ] Dashboard en frontend con gráficas de stock/ventas.
 
-    - [ ]Exportar reportes en Excel y PDF.
+    - [ ] Exportar reportes en Excel y PDF.
 
-    - [ ]Semillas (datos de prueba).
+    - [ ] Semillas (datos de prueba).
 
 - Fase 3 – Extras pro
 
-    - [ ]Microservicio de analítica con FastAPI (ejemplo: predicción de stock bajo).
+    - [ ] Microservicio de analítica con FastAPI (ejemplo: predicción de stock bajo).
 
-    - [ ]Tests automáticos en backend y microservicio.
+    - [ ] Tests automáticos en backend y microservicio.
 
-    - [ ]CI/CD con GitHub Actions.
+    - [ ] CI/CD con GitHub Actions.
 
-    - [ ]Despliegue en la nube (Railway, Render o similar).
+    - [ ] Despliegue en la nube (Railway, Render o similar).
 
 ## 📸 Preview
 
