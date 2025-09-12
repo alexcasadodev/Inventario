@@ -1,4 +1,4 @@
-### Inventario
+# Inventario
 
 Aplicación fullstack de gestión de inventario y reportes, desarrollada con React (frontend), Spring Boot (backend), MySQL (base de datos) y un microservicio extra en FastAPI (Python) para analítica avanzada.
 
@@ -74,6 +74,82 @@ Este proyecto está pensado como un ejercicio de portfolio para demostrar conoci
 ## 📸 Preview
 
 (Se irán añadiendo capturas y GIFs de la app conforme avance el desarrollo).
+
+
+## 🗂 Modelo de datos
+
+### Usuarios
+| Campo      | Tipo      | Detalle                 |
+|------------|-----------|-------------------------|
+| id         | UUID      | PK                      |
+| nombre     | string    |                         |
+| email      | string    | único                   |
+| contraseña | string    |                         |
+| rol        | RolEnum   | ADMIN / EMPLEADO        |
+| created_at | timestamp |                         |
+| updated_at | timestamp |                         |
+
+### Productos
+| Campo        | Tipo      | Detalle             |
+|--------------|-----------|---------------------|
+| id           | UUID      | PK                  |
+| nombre       | string    |                     |
+| categoria    | string    | opcional            |
+| descripcion  | string    | opcional            |
+| stock        | int       | cantidad disponible |
+| precio_venta | double    |                     |
+| created_at   | timestamp |                     |
+| updated_at   | timestamp |                     |
+
+### Entradas (compras/proveedores)
+| Campo         | Tipo      | Detalle                              |
+|---------------|-----------|--------------------------------------|
+| id            | UUID      | PK                                   |
+| id_producto   | UUID      | FK → productos.id                    |
+| cantidad      | int       | cantidad comprada                    |
+| precio_compra | double    | precio de compra por unidad          |
+| fecha_compra  | date      | fecha de la compra                   |
+
+
+### Pedidos
+| Campo        | Tipo      | Detalle                              |
+|--------------|-----------|--------------------------------------|
+| id           | UUID      | PK                                   |
+| id_usuario   | UUID      | FK → usuarios.id                     |
+| fecha_pedido | date      | fecha en que se realiza el pedido    |
+| total        | double    | suma de los precios de los productos |
+
+
+### DetallePedidos
+| Campo        | Tipo      | Detalle                              |
+|--------------|-----------|--------------------------------------|
+| id           | UUID      | PK                                   |
+| id_pedido    | UUID      | FK → pedidos.id                      |
+| id_producto  | UUID      | FK → productos.id                    |
+| cantidad     | int       | cantidad pedida                      |
+| precio_venta | double    | precio del producto en ese pedido    |
+
+
+
+
+
+## 👥 Roles de usuario
+
+La aplicación distingue entre **administradores** y **empleados**, cada uno con diferentes permisos:
+
+| Acción                           | Empleado | Administrador |
+|----------------------------------|:--------:|:-------------:|
+| Iniciar sesión                   | ✅       | ✅             |
+| Consultar productos y stock      | ✅       | ✅             |
+| Registrar pedidos                | ✅       | ✅             |
+| Crear/editar/eliminar productos  | ❌       | ✅             |
+| Gestionar usuarios               | ❌       | ✅             |
+| Consultar reportes de ventas     | ❌       | ✅             |
+| Exportar datos (Excel/PDF)       | ❌       | ✅             |
+| Alertas de stock bajo            | ❌       | ✅             |
+| Gráficas                         | ❌       | ✅             |
+
+
 
 
 ## Autor
