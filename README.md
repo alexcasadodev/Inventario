@@ -16,7 +16,7 @@ Este proyecto está pensado como un ejercicio de portfolio para demostrar conoci
 
 - Aprender a orquestar servicios con Docker Compose.
 
-- (Opcional) Añadir un microservicio en FastAPI para analítica predictiva.
+- Añadir un microservicio en FastAPI para analítica predictiva.
 
 ## 🛠️ Tecnologías
 

@@ -1,0 +1,27 @@
+# DB
+services:
+  db:
+    # image: postgres:14
+    build: apps/db/.
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: inventario
+    ports: 
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - inventario_network
+
+volumes:
+  db_data:
+
+networks:
+  inventario_network:
+    driver: bridge
+
+
+# backendJava
