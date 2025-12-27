@@ -1,11 +1,13 @@
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
 CREATE TABLE IF NOT EXISTS usuarios (
-    id_usuario UUID PRIMARY KEY,
+    id_usuario UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     nombre_usuario VARCHAR(100) NOT NULL,
     email_usuario VARCHAR(100) NOT NULL,
     contraseña_usuario VARCHAR(200) NOT NULL,
     rol_usuario VARCHAR(20) NOT NULL,
-    created_at DATE NOT NULL,
-    updated_at DATE NOT NULL
+    created_at TIMESTAMP WITHOUT TIME ZONE,
+    updated_at TIMESTAMP WITHOUT TIME ZONE
 );
 
 -- Tabla para ver los productos que hay en el almacén
@@ -16,8 +18,8 @@ CREATE TABLE IF NOT EXISTS productos (
     descripcion_producto VARCHAR(200),
     stock_producto INT NOT NULL,
     precio_venta DECIMAL(10,2) NOT NULL,
-    created_at DATE NOT NULL,
-    updated_at DATE NOT NULL
+    created_at TIMESTAMP WITHOUT TIME ZONE,
+    updated_at TIMESTAMP WITHOUT TIME ZONE
 );
 
 -- Tabla para ver las entradas de productos (Compras a proveeddores)

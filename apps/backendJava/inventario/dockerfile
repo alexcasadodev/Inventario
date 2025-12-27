@@ -1,0 +1,24 @@
+# Multi-stage: build with Maven, run on JRE
+FROM maven:3.9.4-eclipse-temurin-21 AS builder
+WORKDIR /workspace
+
+# Copiar sólo lo necesario para aprovechar cache de maven
+COPY pom.xml .
+COPY src ./src
+
+# Compilar el proyecto y generar el JAR
+RUN mvn -B -DskipTests package
+
+FROM eclipse-temurin:21-jre-jammy
+WORKDIR /app
+
+# Copiar el JAR generado en la etapa de build
+COPY --from=builder /workspace/target/*.jar app.jar
+
+# Opcional: forzar propiedades para evitar el error de config server
+# ENV SPRING_CONFIG_IMPORT=optional:configserver: \
+#     SPRING_CLOUD_CONFIG_ENABLED=false \
+#     SPRING_CLOUD_BOOTSTRAP_ENABLED=false \
+#     SPRING_CLOUD_CONFIG_IMPORT_CHECK_ENABLED=false
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

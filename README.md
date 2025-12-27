@@ -151,6 +151,20 @@ La aplicación distingue entre **administradores** y **empleados**, cada uno con
 
 
 
+## Creación de la aplicación
+- CRUD de Usuarios
+    - [ ] En la creación de un usuario se guardará la contraseña hasheada por seguridad
+    - [ ] En el login se usará el correo electrónico para introducir el código enviado y se hashea de nuevo la contraseña para compararlo con el hash que hay en la  base de datos
+
+
+
+## Seguridad
+- Hash de la contraseña
+    - Nos encontramos con dos posibles opciones, Bcrypt y Argon2id
+    - En este caso usaremos Argon2id por aprendizaje de nuevas herramientas y seguridad avanzada, aunque Bcrypt sigue siendo la opción mas utilizada mayoría de entornos de producción
+    - El metodo de cifrado de Argon2id es irreversible y a la hora de comparar, se comparan hashes
+
+
 
 ## Autor
-Proyecto personal de **Alejandro Casado Arribas** ppara portfolio
+Proyecto personal de **Alejandro Casado Arribas** para portfolio
