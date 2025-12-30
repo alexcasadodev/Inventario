@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.inventario.Usuarios.Model.UserInsertDTO;
+import com.inventario.Usuarios.Model.UserLogin;
 import com.inventario.Usuarios.Repository.UserRepository;
 
 @Service
@@ -30,9 +31,9 @@ public class UserService {
         return null;
     }
 
-    public String login(String username, String password) {
+    public String login(UserLogin request) {
 
-        String response = userRepository.login(username, password);
+        String response = userRepository.login(request);
 
         return response;
 

@@ -4,7 +4,11 @@ WORKDIR /workspace
 
 # Copiar sólo lo necesario para aprovechar cache de maven
 COPY pom.xml .
+
+RUN mvn -B dependency:go-offline
+
 COPY src ./src
+
 
 # Compilar el proyecto y generar el JAR
 RUN mvn -B -DskipTests package

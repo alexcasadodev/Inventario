@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.inventario.Respuestas.ApiResponse;
 import com.inventario.Respuestas.ResponseUtility;
 import com.inventario.Usuarios.Model.UserInsertDTO;
+import com.inventario.Usuarios.Model.UserLogin;
 import com.inventario.Usuarios.Service.UserService;
 
 @RestController
@@ -34,10 +35,10 @@ public class UserController {
         return ResponseUtility.buildResponse("success", "User created successfully", null);
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(@RequestParam String username, @RequestParam String password) {
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<String>> login(@RequestBody UserLogin request) {
 
-        String response = userService.login(username, password);
+        String response = userService.login(request);
 
         return ResponseUtility.buildResponse("success", "login successful", response);
 

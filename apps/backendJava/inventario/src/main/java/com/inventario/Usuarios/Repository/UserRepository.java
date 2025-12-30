@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.inventario.Usuarios.Model.UserInsertDTO;
+import com.inventario.Usuarios.Model.UserLogin;
 
 @Repository
 public class UserRepository {
@@ -34,7 +35,7 @@ public class UserRepository {
     }
 
 
-    public String login(String username, String password) {
+    public String login(UserLogin request) {
 
         String sql = """
                 SELECT contraseña_usuario FROM public.usuarios WHERE nombre_usuario = ?
@@ -42,12 +43,12 @@ public class UserRepository {
 
         try {
 
-            String hashedPassword = jdbcTemplate.queryForObject(sql, String.class, username);
+            String hashedPassword = jdbcTemplate.queryForObject(sql, String.class, request.getUsername());
     
-            if (passwordEncoder.matches(password, hashedPassword)) {
+            if (passwordEncoder.matches(request.getPassword(), hashedPassword)) {
                 return "success";
             } else {
-                return "forbidden";
+                return "El usuario y/o la contraseña son incorrectos";
             }
 
         } catch (Exception e) {
