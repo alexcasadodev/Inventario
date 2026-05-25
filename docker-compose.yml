@@ -1,0 +1,62 @@
+# DB
+services:
+  db:
+    # image: postgres:14
+    build: apps/db/.
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: inventario
+    ports: 
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - inventario_network
+# BACKEND
+  backend:
+    build: apps/backendJava/inventario/.
+    # restart: always
+    # depends_on: 
+    #   - db
+    container_name: backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/inventario
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports: 
+      - 8080:8080
+    networks:
+      - inventario_network
+
+# FRONTEND
+  frontend:
+    build:
+      context: apps/frontend/frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:5173"
+    volumes:
+      - ./apps/frontend/frontend:/app
+      - frontend_node_modules:/app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - inventario_network
+
+
+volumes:
+  db_data:
+  frontend_node_modules:
+
+networks:
+  inventario_network:
+    driver: bridge
+
+
+# backendJava
